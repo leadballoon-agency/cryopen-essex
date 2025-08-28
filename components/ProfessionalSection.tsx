@@ -32,23 +32,22 @@ export default function ProfessionalSection() {
           >
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-primary-black/20 to-elegant-gray/20 rounded-2xl transform rotate-3"></div>
-              <div className="relative bg-white rounded-2xl shadow-medical p-8">
-                <div className="flex items-center justify-center mb-6">
-                  <div className="w-32 h-32 relative">
-                    <Image
-                      src="/images/devon at work.jpeg"
-                      alt="Devon - Lead CryoPen Practitioner"
-                      width={128}
-                      height={128}
-                      className="rounded-full object-cover border-4 border-primary-black"
-                    />
+              <div className="relative bg-white rounded-2xl shadow-medical overflow-hidden">
+                <div className="relative h-64 mb-6">
+                  <Image
+                    src="/images/devon at work.jpeg"
+                    alt="Devon - Lead CryoPen Practitioner performing treatment"
+                    fill
+                    className="object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  <div className="absolute bottom-4 left-0 right-0 text-white text-center">
+                    <h3 className="text-2xl font-bold mb-1">Devon</h3>
+                    <p className="font-semibold">Lead CryoPen Practitioner</p>
                   </div>
                 </div>
                 
-                <h3 className="text-2xl font-bold text-center mb-2">Devon</h3>
-                <p className="text-center text-primary-black font-semibold mb-4">
-                  Lead CryoPen Practitioner
-                </p>
+                <div className="p-8 pt-0">
                 
                 <div className="flex justify-center gap-2 mb-6">
                   {[...Array(5)].map((_, i) => (
@@ -64,7 +63,7 @@ export default function ProfessionalSection() {
                   </div>
                   <div className="flex items-center gap-3">
                     <Award className="w-5 h-5 text-primary-black" />
-                    <span className="text-charcoal">1000+ Successful Treatments</span>
+                    <span className="text-charcoal">Expert in Skin Lesion Removal</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Heart className="w-5 h-5 text-primary-black" />
@@ -74,6 +73,7 @@ export default function ProfessionalSection() {
                     <Shield className="w-5 h-5 text-primary-black" />
                     <span className="text-charcoal">Fully Insured & Licensed</span>
                   </div>
+                </div>
                 </div>
               </div>
             </div>
@@ -91,9 +91,9 @@ export default function ProfessionalSection() {
                 Why Choose Devon at Essex Way Clinic?
               </h3>
               <p className="text-charcoal mb-4">
-                With extensive experience in CryoPen treatments, Devon has helped over 1000 patients 
-                successfully remove unwanted skin lesions. Her gentle approach and attention to detail 
-                ensure every patient feels comfortable and confident throughout their treatment journey.
+                With advanced training in CryoPen treatments, Devon brings expertise and precision to 
+                every procedure. Her gentle approach and attention to detail ensure every patient feels 
+                comfortable and confident throughout their treatment journey.
               </p>
             </div>
 
@@ -151,13 +151,13 @@ export default function ProfessionalSection() {
                 </div>
                 <div className="bg-white/20 backdrop-blur rounded-lg p-3">
                   <Shield className="w-6 h-6 mb-2" />
-                  <p className="font-semibold">CQC Standards</p>
-                  <p className="text-sm opacity-90">Fully compliant clinic</p>
+                  <p className="font-semibold">Fully Insured</p>
+                  <p className="text-sm opacity-90">Professional indemnity</p>
                 </div>
                 <div className="bg-white/20 backdrop-blur rounded-lg p-3">
                   <Users className="w-6 h-6 mb-2" />
-                  <p className="font-semibold">1000+ Patients</p>
-                  <p className="text-sm opacity-90">Trusted by the community</p>
+                  <p className="font-semibold">Growing Practice</p>
+                  <p className="text-sm opacity-90">Trusted by patients</p>
                 </div>
                 <div className="bg-white/20 backdrop-blur rounded-lg p-3">
                   <Star className="w-6 h-6 mb-2" />

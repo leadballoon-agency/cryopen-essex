@@ -149,7 +149,7 @@ export default function Home() {
             Ready to Remove Your Skin Lesions?
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Join over 1000 happy patients who've transformed their skin
+            Join our happy patients who've transformed their skin
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button

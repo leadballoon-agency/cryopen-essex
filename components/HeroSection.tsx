@@ -110,7 +110,7 @@ export default function HeroSection({ onCTAClick }: HeroSectionProps) {
               </div>
               <div className="flex items-center gap-2">
                 <Star className="w-5 h-5 text-primary-black" />
-                <span className="text-sm text-charcoal font-medium">1000+ Treatments</span>
+                <span className="text-sm text-charcoal font-medium">Expert Treatments</span>
               </div>
             </div>
           </motion.div>
@@ -165,7 +165,7 @@ export default function HeroSection({ onCTAClick }: HeroSectionProps) {
                 </button>
                 
                 <p className="text-center text-sm text-silver mt-4">
-                  Join 1000+ happy patients
+                  Join our happy patients
                 </p>
               </div>
             </div>

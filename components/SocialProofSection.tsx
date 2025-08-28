@@ -69,7 +69,7 @@ const testimonials = [
 
 const stats = [
   { number: "5.0★", label: "50+ Google Reviews", icon: Star },
-  { number: "1000+", label: "Happy Patients", icon: Users },
+  { number: "100+", label: "Happy Patients", icon: Users },
   { number: "2025", label: "Award Winner", icon: Award },
   { number: "98%", label: "Success Rate", icon: Award }
 ]
@@ -89,7 +89,7 @@ export default function SocialProofSection() {
             What Our Patients Say
           </h2>
           <p className="text-xl text-charcoal max-w-3xl mx-auto">
-            Join over 1000 happy patients who've transformed their skin with CryoPen
+            Join our growing community of happy patients who've transformed their skin with CryoPen
           </p>
         </motion.div>
 
