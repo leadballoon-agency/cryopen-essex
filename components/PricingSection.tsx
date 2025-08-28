@@ -96,15 +96,15 @@ export default function PricingSection({ onCTAClick }: PricingSectionProps) {
             <div className="bg-white/10 backdrop-blur rounded-xl p-6">
               <div className="text-center mb-4">
                 <p className="text-sm font-semibold text-white mb-2">
-                  £25 Booking Fee • Fully Redeemable
+                  £25 Consultation Fee
                 </p>
                 <p className="text-xs opacity-80">
-                  Secures your appointment and is deducted from your treatment cost
+                  Professional assessment with Devon • Skin analysis fees may apply
                 </p>
               </div>
               <div className="h-px bg-white/20 my-4"></div>
               <p className="text-center text-sm mb-4">
-                Your exact pricing will be confirmed during your free consultation based on:
+                Your exact pricing will be confirmed during your consultation based on:
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
                 <div>

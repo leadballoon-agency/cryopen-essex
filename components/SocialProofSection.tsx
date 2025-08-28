@@ -70,7 +70,7 @@ const testimonials = [
 const stats = [
   { number: "5.0★", label: "50+ Google Reviews", icon: Star },
   { number: "1000+", label: "Happy Patients", icon: Users },
-  { number: "2022", label: "Award Winner", icon: Award },
+  { number: "2025", label: "Award Winner", icon: Award },
   { number: "98%", label: "Success Rate", icon: Award }
 ]
 

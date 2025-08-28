@@ -131,8 +131,8 @@ export default function CalendarModal({ isOpen, onClose }: CalendarModalProps) {
           <div className="px-6 pb-4">
             <div className="bg-off-white border border-light-gray rounded-lg p-4">
               <p className="text-sm text-charcoal">
-                <span className="font-medium">Please note:</span> A £25 booking fee is required when Kerry calls to confirm your appointment. 
-                This fee is fully redeemable against your treatment cost.
+                <span className="font-medium">Please note:</span> A £25 consultation fee applies for your appointment with Devon. 
+                Additional skin analysis fees may apply if required.
               </p>
             </div>
           </div>

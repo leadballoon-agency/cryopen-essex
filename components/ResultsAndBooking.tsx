@@ -127,13 +127,13 @@ export default function ResultsAndBooking({ assessmentData }: ResultsAndBookingP
                 <p className="text-sm opacity-80 mt-2">For {assessmentData.lesionCount} lesion{assessmentData.lesionCount > 1 ? 's' : ''}</p>
               </div>
               <div className="bg-white/10 backdrop-blur rounded-lg p-3 mb-3">
-                <p className="text-xs font-medium">£25 booking fee required</p>
-                <p className="text-xs opacity-90">Fully redeemable against treatment</p>
+                <p className="text-xs font-medium">£25 consultation fee</p>
+                <p className="text-xs opacity-90">Skin analysis may incur additional fees</p>
               </div>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-center gap-2">
                   <Check className="w-4 h-4" />
-                  Free consultation included
+                  Professional consultation with Devon
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="w-4 h-4" />
