@@ -36,7 +36,7 @@ export default function ProfessionalSection() {
                 <div className="flex items-center justify-center mb-6">
                   <div className="w-32 h-32 relative">
                     <Image
-                      src="/images/devon.png"
+                      src="/images/devon at work.jpeg"
                       alt="Devon - Lead CryoPen Practitioner"
                       width={128}
                       height={128}
@@ -146,7 +146,7 @@ export default function ProfessionalSection() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-white/20 backdrop-blur rounded-lg p-3">
                   <Award className="w-6 h-6 mb-2" />
-                  <p className="font-semibold">2022 Award Winner</p>
+                  <p className="font-semibold">2025 Award Winner</p>
                   <p className="text-sm opacity-90">England's Business Awards</p>
                 </div>
                 <div className="bg-white/20 backdrop-blur rounded-lg p-3">
