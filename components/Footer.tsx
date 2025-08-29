@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Phone, Mail, MapPin } from 'lucide-react'
+import { Phone } from 'lucide-react'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -21,22 +21,13 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="text-center">
-            <div className="space-y-2">
-              <a 
-                href="tel:07414452441" 
-                className="flex items-center justify-center gap-2 text-charcoal hover:text-primary-black transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-                <span>07414 452 441</span>
-              </a>
-              <a 
-                href="mailto:info@essexwayclinic.com" 
-                className="flex items-center justify-center gap-2 text-charcoal hover:text-primary-black transition-colors"
-              >
-                <Mail className="w-4 h-4" />
-                <span>info@essexwayclinic.com</span>
-              </a>
-            </div>
+            <a 
+              href="tel:07414452441" 
+              className="flex items-center justify-center gap-2 text-charcoal hover:text-primary-black transition-colors"
+            >
+              <Phone className="w-4 h-4" />
+              <span>07414 452 441</span>
+            </a>
           </div>
 
           {/* Hours */}

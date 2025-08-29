@@ -33,17 +33,16 @@ export default function ProfessionalSection() {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-primary-black/20 to-elegant-gray/20 rounded-2xl transform rotate-3"></div>
               <div className="relative bg-white rounded-2xl shadow-medical overflow-hidden">
-                <div className="relative h-64 mb-6">
+                <div className="relative aspect-[4/5] mb-6">
                   <Image
                     src="/images/devon at work.jpeg"
-                    alt="Devon - Lead CryoPen Practitioner performing treatment"
+                    alt="Devon - Lead CryoPen Practitioner with CryoPen device"
                     fill
-                    className="object-cover object-center"
+                    className="object-contain bg-white"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <div className="absolute bottom-4 left-0 right-0 text-white text-center">
-                    <h3 className="text-2xl font-bold mb-1">Devon</h3>
-                    <p className="font-semibold">Lead CryoPen Practitioner</p>
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                    <h3 className="text-2xl font-bold mb-1 text-white text-center">Devon</h3>
+                    <p className="font-semibold text-white text-center">Lead CryoPen Practitioner</p>
                   </div>
                 </div>
                 

@@ -6,13 +6,53 @@ import Script from 'next/script'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'CryoPen Treatment Essex - Remove Skin Tags & Warts in Seconds',
-  description: 'Professional CryoPen treatment from £50. Safe for children 6+. No cutting or stitches. Book your free consultation today.',
-  keywords: 'cryopen, skin tags, wart removal, essex, cryotherapy, skin lesion removal',
+  metadataBase: new URL('https://cryopenessex.co.uk'),
+  title: 'CryoPen Treatment Essex - Remove Skin Tags & Warts | Essex Way Clinic',
+  description: 'Professional CryoPen treatment in Essex. Safe, quick & effective removal of skin tags, warts, age spots & more. Book consultation with Devon today.',
+  keywords: 'cryopen essex, skin tag removal essex, wart removal essex, cryotherapy essex, devon cryopen, essex way clinic, skin lesion removal',
+  authors: [{ name: 'Essex Way Clinic' }],
+  creator: 'Essex Way Clinic',
+  publisher: 'Essex Way Clinic',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
-    title: 'CryoPen Treatment Essex - Remove Skin Tags & Warts in Seconds',
-    description: 'Professional CryoPen treatment from £50. Safe for children 6+.',
+    title: 'CryoPen Treatment Essex - Remove Skin Tags & Warts | Essex Way Clinic',
+    description: 'Professional CryoPen treatment in Essex. Safe & effective removal of skin lesions. Book your consultation today.',
+    url: 'https://cryopenessex.co.uk',
+    siteName: 'CryoPen Essex - Essex Way Clinic',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'CryoPen Treatment at Essex Way Clinic',
+      }
+    ],
+    locale: 'en_GB',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'CryoPen Treatment Essex - Essex Way Clinic',
+    description: 'Professional CryoPen treatment in Essex. Safe & effective removal of skin lesions.',
     images: ['/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://cryopenessex.co.uk',
   },
 }
 

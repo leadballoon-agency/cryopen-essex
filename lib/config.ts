@@ -4,7 +4,7 @@ export const siteConfig = {
     name: 'Essex Way Clinic',
     tagline: 'Professional CryoPen Treatment in Essex',
     description: 'Award-winning aesthetic clinic specializing in CryoPen treatments for skin lesion removal',
-    award: "England's Business Award Winner 2022",
+    award: "England's Business Award Winner 2025",
   },
 
   // Contact Information

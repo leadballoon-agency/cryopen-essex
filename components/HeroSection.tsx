@@ -38,7 +38,7 @@ export default function HeroSection({ onCTAClick }: HeroSectionProps) {
             <div className="mb-6">
               <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary-black text-white rounded-full text-sm font-semibold">
                 <Star className="w-4 h-4 fill-current" />
-                England's Business Award Winner 2022
+                England's Business Award Winner 2025
               </span>
             </div>
             
