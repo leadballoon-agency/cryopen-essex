@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Check, ChevronRight, Sparkles } from 'lucide-react'
+import { trackFacebookEvent } from '@/lib/analytics'
 
 interface AssessmentData {
   treatmentType: string
@@ -64,12 +65,12 @@ export default function TreatmentChecker({ onComplete }: TreatmentCheckerProps) 
     setAssessmentData({ ...assessmentData, treatmentType: value })
     setStep(2)
     
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'ViewContent', {
-        content_type: 'treatment_assessment',
-        content_name: value
-      })
-    }
+    trackFacebookEvent('AddToCart', {
+      content_type: 'treatment_selection',
+      content_name: value,
+      value: 25.00,
+      currency: 'GBP'
+    })
   }
 
   const handleCountSelect = (count: number) => {
@@ -81,13 +82,14 @@ export default function TreatmentChecker({ onComplete }: TreatmentCheckerProps) 
     const finalData = { ...assessmentData, urgency: value }
     setAssessmentData(finalData)
     
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'InitiateCheckout', {
-        value: 30.00,
-        currency: 'GBP',
-        content_type: 'assessment_completed'
-      })
-    }
+    trackFacebookEvent('CompleteAssessment', {
+      value: 25.00,
+      currency: 'GBP',
+      content_type: 'assessment_completed',
+      treatment_type: finalData.treatmentType,
+      lesion_count: finalData.lesionCount,
+      urgency: value
+    })
     
     onComplete(finalData)
   }

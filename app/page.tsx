@@ -13,6 +13,7 @@ import FloatingCTA from '@/components/FloatingCTA'
 import BeforeAfterGallery from '@/components/BeforeAfterGallery'
 import ProfessionalSection from '@/components/ProfessionalSection'
 import Footer from '@/components/Footer'
+import { trackFacebookEvent } from '@/lib/analytics'
 
 const DynamicSocialProof = dynamic(() => import('@/components/SocialProofSection'), {
   loading: () => <div className="min-h-[400px] bg-off-white animate-pulse" />
@@ -36,6 +37,15 @@ export default function Home() {
 
   const handleCTAClick = () => {
     setShowAssessment(true)
+    
+    // Track Facebook Pixel conversion event
+    trackFacebookEvent('StartAssessment', {
+      content_name: 'CryoPen Treatment Assessment',
+      content_category: 'Lead Generation',
+      value: 25.00, // Consultation fee value
+      currency: 'GBP'
+    })
+    
     setTimeout(() => {
       assessmentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
     }, 100)

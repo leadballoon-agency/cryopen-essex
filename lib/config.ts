@@ -73,7 +73,7 @@ export const siteConfig = {
   // Analytics - PLEASE UPDATE WITH REAL IDS
   analytics: {
     googleAnalyticsId: 'GA_MEASUREMENT_ID', // UPDATE: Add real GA4 ID
-    facebookPixelId: 'YOUR_PIXEL_ID', // UPDATE: Add real Facebook Pixel ID
+    facebookPixelId: '2521243374752458',
   },
 
   // GHL Calendar - PLEASE UPDATE WITH REAL DETAILS

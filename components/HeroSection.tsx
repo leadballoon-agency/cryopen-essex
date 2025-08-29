@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Check, Star, Shield, Clock, Phone, Sparkles, ArrowRight, Calendar } from 'lucide-react'
 import CalendarModal from './CalendarModal'
+import { trackPhoneClick } from '@/lib/analytics'
 
 interface HeroSectionProps {
   onCTAClick: () => void
@@ -92,6 +93,7 @@ export default function HeroSection({ onCTAClick }: HeroSectionProps) {
               
               <a
                 href="tel:07414452441"
+                onClick={() => trackPhoneClick('hero_section')}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-primary-black text-primary-black font-semibold rounded-full hover:bg-primary-black hover:text-white transition-all whitespace-nowrap"
               >
                 <Phone className="w-5 h-5" />

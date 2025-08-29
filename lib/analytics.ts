@@ -99,7 +99,9 @@ export const trackPhoneClick = (location: string) => {
   
   trackFacebookEvent('Contact', {
     content_type: 'phone_call',
-    content_name: location
+    content_name: location,
+    value: 25.00,
+    currency: 'GBP'
   })
 }
 
