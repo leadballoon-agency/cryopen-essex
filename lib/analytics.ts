@@ -113,7 +113,9 @@ export const trackWhatsAppClick = (location: string) => {
   
   trackFacebookEvent('Contact', {
     content_type: 'whatsapp',
-    content_name: location
+    content_name: location,
+    value: 25.00,
+    currency: 'GBP'
   })
 }
 

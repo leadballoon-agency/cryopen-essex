@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, X, MessageSquare, ChevronUp } from 'lucide-react'
+import { trackPhoneClick, trackWhatsAppClick } from '@/lib/analytics'
 
 interface FloatingCTAProps {
   onCTAClick: () => void
@@ -91,9 +92,10 @@ export default function FloatingCTA({ onCTAClick }: FloatingCTAProps) {
         </AnimatePresence>
         
         <a
-          href="https://wa.me/441234567890?text=Hi,%20I'm%20interested%20in%20CryoPen%20treatment"
+          href="https://wa.me/447414452441?text=Hi,%20I'm%20interested%20in%20CryoPen%20treatment"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackWhatsAppClick('floating_button')}
           className="w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-colors flex items-center justify-center group"
           aria-label="WhatsApp"
         >
@@ -102,6 +104,7 @@ export default function FloatingCTA({ onCTAClick }: FloatingCTAProps) {
         
         <a
           href="tel:07414452441"
+          onClick={() => trackPhoneClick('floating_button')}
           className="w-14 h-14 bg-primary-black text-white rounded-full shadow-lg hover:bg-elegant-gray transition-colors flex items-center justify-center animate-pulse"
           aria-label="Call now"
         >
