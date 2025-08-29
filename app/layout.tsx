@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
+import PixelEvents from '@/components/PixelEvents'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -78,6 +79,13 @@ export default function RootLayout({
               'https://connect.facebook.net/en_US/fbevents.js');
               fbq('init', '2521243374752458');
               fbq('track', 'PageView');
+              
+              // Ensure PageView fires after DOM is ready
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                  fbq('track', 'PageView');
+                });
+              }
             `,
           }}
         />
@@ -106,6 +114,7 @@ export default function RootLayout({
             gtag('config', 'GA_MEASUREMENT_ID');
           `}
         </Script>
+        <PixelEvents />
         {children}
       </body>
     </html>

@@ -18,8 +18,18 @@ export const trackFacebookEvent = (
   eventName: string,
   parameters?: Record<string, any>
 ) => {
-  if (typeof window !== 'undefined' && window.fbq) {
-    window.fbq('track', eventName, parameters)
+  if (typeof window !== 'undefined') {
+    // Try to fire immediately if fbq exists
+    if (window.fbq) {
+      window.fbq('track', eventName, parameters)
+    } else {
+      // If fbq doesn't exist yet, wait for it
+      setTimeout(() => {
+        if (window.fbq) {
+          window.fbq('track', eventName, parameters)
+        }
+      }, 1000)
+    }
   }
 }
 
