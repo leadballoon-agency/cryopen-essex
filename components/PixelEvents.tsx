@@ -4,6 +4,12 @@ import { useEffect } from 'react'
 
 export default function PixelEvents() {
   useEffect(() => {
+    // Scroll to top on mount (fixes refresh scroll position)
+    if (typeof window !== 'undefined') {
+      window.history.scrollRestoration = 'manual'
+      window.scrollTo(0, 0)
+    }
+    
     // Ensure fbq is available and fire a test event
     const checkPixel = () => {
       if (typeof window !== 'undefined' && (window as any).fbq) {

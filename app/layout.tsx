@@ -63,7 +63,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ scrollBehavior: 'auto' }}>
       <head>
         {/* Facebook Pixel Code */}
         <script
