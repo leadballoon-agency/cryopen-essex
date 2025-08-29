@@ -11,11 +11,6 @@ export const trackEvent = (eventName: string, parameters?: Record<string, any>) 
     if (window.gtag) {
       window.gtag('event', eventName, parameters)
     }
-    
-    // Console log in development
-    if (process.env.NODE_ENV === 'development') {
-      console.log('📊 Track Event:', eventName, parameters)
-    }
   }
 }
 
@@ -25,11 +20,6 @@ export const trackFacebookEvent = (
 ) => {
   if (typeof window !== 'undefined' && window.fbq) {
     window.fbq('track', eventName, parameters)
-    
-    // Always log for debugging
-    console.log('📘 Facebook Pixel Event Fired:', eventName, parameters)
-  } else {
-    console.warn('⚠️ Facebook Pixel not loaded yet. Event not tracked:', eventName)
   }
 }
 
