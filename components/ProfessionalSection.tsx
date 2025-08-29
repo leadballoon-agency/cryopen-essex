@@ -173,8 +173,8 @@ export default function ProfessionalSection() {
                   <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold">Essex Way Clinic</p>
-                    <p className="text-sm opacity-90">Professional aesthetic treatments</p>
-                    <p className="text-sm opacity-90">Essex, United Kingdom</p>
+                    <p className="text-sm opacity-90">Aveley House, Arcany Road</p>
+                    <p className="text-sm opacity-90">South Ockendon, Essex RM15 5SX</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -188,7 +188,7 @@ export default function ProfessionalSection() {
                 </div>
               </div>
               <button
-                onClick={() => window.open('https://maps.google.com', '_blank')}
+                onClick={() => window.open('https://maps.google.com/maps?q=Aveley+House+Arcany+Road+South+Ockendon+Essex+RM15+5SX', '_blank')}
                 className="mt-4 w-full py-2 bg-white text-primary-black font-semibold rounded-lg hover:bg-off-white transition-colors"
               >
                 Get Directions

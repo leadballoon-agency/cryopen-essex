@@ -15,15 +15,15 @@ export const siteConfig = {
     bookingEmail: 'bookings@essexwayclinic.com',
   },
 
-  // Address - PLEASE UPDATE WITH REAL ADDRESS
+  // Address
   address: {
-    line1: 'Essex Way Clinic', // UPDATE: Add street address
-    line2: '', // UPDATE: Add suite/unit number if applicable
-    city: 'Essex',
+    line1: 'Aveley House',
+    line2: 'Arcany Road',
+    city: 'South Ockendon',
     county: 'Essex',
-    postcode: 'XX00 0XX', // UPDATE: Add real postcode
+    postcode: 'RM15 5SX',
     country: 'United Kingdom',
-    googleMapsUrl: 'https://maps.google.com', // UPDATE: Add real Google Maps URL
+    googleMapsUrl: 'https://maps.google.com/maps?q=Aveley+House+Arcany+Road+South+Ockendon+Essex+RM15+5SX',
   },
 
   // Operating Hours

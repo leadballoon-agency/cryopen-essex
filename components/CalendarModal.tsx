@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Calendar, Clock, CheckCircle } from 'lucide-react'
+import { X, Calendar, Clock, CheckCircle, Check, Phone, MessageSquare } from 'lucide-react'
+import { trackFacebookEvent } from '@/lib/analytics'
 
 interface CalendarModalProps {
   isOpen: boolean
@@ -11,10 +12,12 @@ interface CalendarModalProps {
 
 export default function CalendarModal({ isOpen, onClose }: CalendarModalProps) {
   const modalRef = useRef<HTMLDivElement>(null)
+  const [bookingComplete, setBookingComplete] = useState(false)
 
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
+      setBookingComplete(false) // Reset state when reopening
       
       // Load GHL form embed script when modal opens
       const script = document.createElement('script')
@@ -46,6 +49,20 @@ export default function CalendarModal({ isOpen, onClose }: CalendarModalProps) {
     }
   }, [isOpen, onClose])
 
+  const handleBookingComplete = () => {
+    setBookingComplete(true)
+    trackFacebookEvent('Schedule', {
+      value: 25.00,
+      currency: 'GBP',
+      content_name: 'Consultation Booking Completed'
+    })
+  }
+
+  const handleClose = () => {
+    setBookingComplete(false)
+    onClose()
+  }
+
   if (!isOpen) return null
 
   return (
@@ -58,7 +75,7 @@ export default function CalendarModal({ isOpen, onClose }: CalendarModalProps) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
           className="absolute inset-0 bg-black/80 backdrop-blur-sm"
-          onClick={onClose}
+          onClick={handleClose}
         />
         
         {/* Modal */}
@@ -83,7 +100,7 @@ export default function CalendarModal({ isOpen, onClose }: CalendarModalProps) {
                 </p>
               </div>
               <button
-                onClick={onClose}
+                onClick={handleClose}
                 className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
                 aria-label="Close modal"
               >
@@ -116,26 +133,83 @@ export default function CalendarModal({ isOpen, onClose }: CalendarModalProps) {
             </div>
           </div>
 
-          {/* Calendar Embed */}
-          <div className="p-6 bg-white">
-            <iframe 
-              src="https://link.hifuessex.co.uk/widget/booking/kLEVeJXuQZV6PA5oveyu" 
-              style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: '500px' }}
-              scrolling="no" 
-              id="ghl-calendar-iframe"
-              title="Book Your Consultation"
-            />
-          </div>
+          {!bookingComplete ? (
+            <>
+              {/* Calendar Embed */}
+              <div className="p-6 bg-white">
+                <iframe 
+                  src="https://link.hifuessex.co.uk/widget/booking/kLEVeJXuQZV6PA5oveyu" 
+                  style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: '500px' }}
+                  scrolling="no" 
+                  id="ghl-calendar-iframe"
+                  title="Book Your Consultation"
+                />
+              </div>
 
-          {/* Booking Fee Notice */}
-          <div className="px-6 pb-4">
-            <div className="bg-off-white border border-light-gray rounded-lg p-4">
-              <p className="text-sm text-charcoal">
-                <span className="font-medium">Please note:</span> A £25 consultation fee applies for your appointment with Devon. 
-                Additional skin analysis fees may apply if required.
+              {/* Booking Complete Button */}
+              <div className="px-6 pb-4">
+                <button
+                  onClick={handleBookingComplete}
+                  className="w-full py-3 bg-primary-black text-white font-semibold rounded-full hover:bg-elegant-gray transition-colors mb-4"
+                >
+                  I've Completed My Booking ✓
+                </button>
+                
+                <div className="bg-off-white border border-light-gray rounded-lg p-4">
+                  <p className="text-sm text-charcoal">
+                    <span className="font-medium">Please note:</span> A £25 consultation fee applies for your appointment with Devon. 
+                    Additional skin analysis fees may apply if required.
+                  </p>
+                </div>
+              </div>
+            </>
+          ) : (
+            /* Thank You State */
+            <div className="p-8 bg-white text-center">
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: 'spring', stiffness: 200 }}
+                className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary-black to-elegant-gray rounded-full mb-6"
+              >
+                <Check className="w-10 h-10 text-white" />
+              </motion.div>
+              
+              <h3 className="text-2xl font-bold text-primary-black mb-4">
+                Booking Confirmed!
+              </h3>
+              
+              <p className="text-lg text-charcoal mb-6">
+                Kerry will call you within 24 hours to confirm your appointment
               </p>
+              
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+                <p className="text-amber-800 font-medium">
+                  ⚡ Important: Please answer when Kerry calls from 07414 452 441
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="bg-off-white rounded-lg p-4">
+                  <Phone className="w-8 h-8 text-primary-black mx-auto mb-2" />
+                  <p className="font-semibold text-primary-black">Kerry Calls</p>
+                  <p className="text-sm text-charcoal">Within 24 hours</p>
+                </div>
+                <div className="bg-off-white rounded-lg p-4">
+                  <Clock className="w-8 h-8 text-primary-black mx-auto mb-2" />
+                  <p className="font-semibold text-primary-black">5-Min Chat</p>
+                  <p className="text-sm text-charcoal">Quick consultation</p>
+                </div>
+              </div>
+              
+              <button
+                onClick={handleClose}
+                className="px-8 py-3 bg-primary-black text-white font-bold rounded-full hover:bg-elegant-gray transition-all"
+              >
+                Close
+              </button>
             </div>
-          </div>
+          )}
 
           {/* Footer */}
           <div className="bg-off-white px-6 py-4 rounded-b-2xl border-t border-light-gray">
