@@ -38,10 +38,10 @@ export default function Home() {
   const handleCTAClick = () => {
     setShowAssessment(true)
     
-    // Track Facebook Pixel conversion event
-    trackFacebookEvent('StartAssessment', {
-      content_name: 'CryoPen Treatment Assessment',
-      content_category: 'Lead Generation',
+    // Track Facebook Pixel conversion event - using standard Lead event
+    trackFacebookEvent('Lead', {
+      content_name: 'Started CryoPen Assessment',
+      content_category: 'Assessment Started',
       value: 25.00, // Consultation fee value
       currency: 'GBP'
     })

@@ -87,6 +87,17 @@ export default function RootLayout({
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '2521243374752458');
             fbq('track', 'PageView');
+            
+            // Test ViewContent event to verify pixel is working
+            setTimeout(function() {
+              fbq('track', 'ViewContent', {
+                content_name: 'Landing Page',
+                content_category: 'CryoPen Treatment',
+                value: 0.00,
+                currency: 'GBP'
+              });
+              console.log('Facebook Pixel Test Event Sent: ViewContent');
+            }, 2000);
           `}
         </Script>
         <Script

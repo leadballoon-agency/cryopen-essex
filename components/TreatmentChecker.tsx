@@ -82,13 +82,11 @@ export default function TreatmentChecker({ onComplete }: TreatmentCheckerProps) 
     const finalData = { ...assessmentData, urgency: value }
     setAssessmentData(finalData)
     
-    trackFacebookEvent('CompleteAssessment', {
+    trackFacebookEvent('CompleteRegistration', {
       value: 25.00,
       currency: 'GBP',
-      content_type: 'assessment_completed',
-      treatment_type: finalData.treatmentType,
-      lesion_count: finalData.lesionCount,
-      urgency: value
+      content_name: 'Assessment Completed',
+      status: true
     })
     
     onComplete(finalData)
