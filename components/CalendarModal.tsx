@@ -51,10 +51,21 @@ export default function CalendarModal({ isOpen, onClose }: CalendarModalProps) {
 
   const handleBookingComplete = () => {
     setBookingComplete(true)
+    
+    // Track as Schedule event (Facebook standard event for appointments)
     trackFacebookEvent('Schedule', {
       value: 25.00,
       currency: 'GBP',
-      content_name: 'Consultation Booking Completed'
+      content_name: 'Consultation Booked',
+      content_type: 'CryoPen Consultation'
+    })
+    
+    // Also track custom event for more detail
+    trackFacebookEvent('BookingCompleted', {
+      value: 25.00,
+      currency: 'GBP',
+      booking_type: 'online_calendar',
+      content_name: 'CryoPen Consultation with Devon'
     })
   }
 

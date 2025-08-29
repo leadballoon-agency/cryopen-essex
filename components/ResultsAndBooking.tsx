@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Check, Clock, Phone, Shield, Star, Calendar } from 'lucide-react'
 import CalendarModal from './CalendarModal'
+import { trackPhoneClick, trackFacebookEvent } from '@/lib/analytics'
 
 interface AssessmentData {
   treatmentType: string
@@ -170,6 +171,17 @@ export default function ResultsAndBooking({ assessmentData }: ResultsAndBookingP
               
               <a
                 href="tel:07414452441"
+                onClick={() => {
+                  // Track as both Contact and special post-assessment call
+                  trackPhoneClick('results_page_after_assessment')
+                  trackFacebookEvent('CallAfterAssessment', {
+                    value: 25.00,
+                    currency: 'GBP',
+                    content_name: 'Post-Assessment Call',
+                    treatment_type: assessmentData.treatmentType,
+                    lesion_count: assessmentData.lesionCount
+                  })
+                }}
                 className="px-8 py-4 border-2 border-primary-black text-primary-black font-bold rounded-full hover:bg-primary-black hover:text-white transition-all inline-flex items-center justify-center gap-2 whitespace-nowrap"
               >
                 <Phone className="w-5 h-5" />

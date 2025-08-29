@@ -65,8 +65,17 @@ export default function TreatmentChecker({ onComplete }: TreatmentCheckerProps) 
     setAssessmentData({ ...assessmentData, treatmentType: value })
     setStep(2)
     
-    trackFacebookEvent('AddToCart', {
+    // Custom event for assessment progress
+    trackFacebookEvent('AssessmentStep1', {
       content_type: 'treatment_selection',
+      content_name: value,
+      step: 1,
+      value: 25.00,
+      currency: 'GBP'
+    })
+    
+    // Standard event for backup
+    trackFacebookEvent('AddToCart', {
       content_name: value,
       value: 25.00,
       currency: 'GBP'
@@ -76,18 +85,33 @@ export default function TreatmentChecker({ onComplete }: TreatmentCheckerProps) 
   const handleCountSelect = (count: number) => {
     setAssessmentData({ ...assessmentData, lesionCount: count })
     setStep(3)
+    
+    // Track assessment step 2
+    trackFacebookEvent('AssessmentStep2', {
+      content_type: 'lesion_count',
+      lesion_count: count,
+      step: 2,
+      value: 25.00,
+      currency: 'GBP'
+    })
   }
 
   const handleUrgencySelect = (value: string) => {
     const finalData = { ...assessmentData, urgency: value }
     setAssessmentData(finalData)
     
-    trackFacebookEvent('CompleteRegistration', {
+    // Custom event for completed assessment
+    trackFacebookEvent('CompleteAssessment', {
       value: 25.00,
       currency: 'GBP',
-      content_name: 'Assessment Completed',
-      status: true
+      content_name: 'Full Assessment Completed',
+      treatment_type: finalData.treatmentType,
+      lesion_count: finalData.lesionCount,
+      urgency: value,
+      step: 3
     })
+    
+    // Don't fire CompleteRegistration here - that's for actual booking
     
     onComplete(finalData)
   }
