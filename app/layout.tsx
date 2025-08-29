@@ -64,6 +64,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <noscript>
+          <img 
+            height="1" 
+            width="1" 
+            style={{ display: 'none' }}
+            src="https://www.facebook.com/tr?id=2521243374752458&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
+      </head>
+      <body className={inter.className}>
         <Script id="facebook-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
@@ -91,8 +102,8 @@ export default function RootLayout({
             gtag('config', 'GA_MEASUREMENT_ID');
           `}
         </Script>
-      </head>
-      <body className={inter.className}>{children}</body>
+        {children}
+      </body>
     </html>
   )
 }

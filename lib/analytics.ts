@@ -26,10 +26,10 @@ export const trackFacebookEvent = (
   if (typeof window !== 'undefined' && window.fbq) {
     window.fbq('track', eventName, parameters)
     
-    // Console log in development
-    if (process.env.NODE_ENV === 'development') {
-      console.log('📘 Facebook Event:', eventName, parameters)
-    }
+    // Always log for debugging
+    console.log('📘 Facebook Pixel Event Fired:', eventName, parameters)
+  } else {
+    console.warn('⚠️ Facebook Pixel not loaded yet. Event not tracked:', eventName)
   }
 }
 
