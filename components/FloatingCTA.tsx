@@ -75,7 +75,7 @@ export default function FloatingCTA({ onCTAClick }: FloatingCTAProps) {
         )}
       </AnimatePresence>
 
-      <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-3">
+      <div className="fixed bottom-4 right-4 z-50 hidden md:flex flex-col gap-3">
         <AnimatePresence>
           {showScrollTop && (
             <motion.button
@@ -117,17 +117,21 @@ export default function FloatingCTA({ onCTAClick }: FloatingCTAProps) {
         animate={{ y: 0 }}
         className="fixed bottom-0 left-0 right-0 bg-white border-t border-light-gray shadow-xl md:hidden z-40"
       >
-        <div className="flex items-center justify-between p-4">
-          <div>
-            <p className="text-sm font-semibold text-primary-black">Free Consultation</p>
-            <p className="text-xs text-charcoal">No obligation</p>
-          </div>
+        <div className="flex items-center justify-between gap-3 p-3">
           <button
             onClick={onCTAClick}
-            className="px-6 py-3 bg-gradient-to-r from-primary-black to-elegant-gray text-white font-bold rounded-full text-sm hover:shadow-lg transition-all"
+            className="flex-1 px-4 py-3 bg-primary-black text-white font-bold rounded-full text-sm"
           >
-            Book Now
+            Start Assessment
           </button>
+          <a
+            href="tel:07414452441"
+            onClick={() => trackPhoneClick('mobile_sticky_bar')}
+            className="px-4 py-3 bg-white border-2 border-primary-black text-primary-black rounded-full"
+            aria-label="Call now"
+          >
+            <Phone className="w-5 h-5" />
+          </a>
         </div>
       </motion.div>
     </>
