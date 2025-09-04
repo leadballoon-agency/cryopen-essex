@@ -9,6 +9,9 @@ interface AssessmentData {
   treatmentType: string
   lesionCount: number
   urgency: string
+  email?: string
+  phone?: string
+  name?: string
 }
 
 interface TreatmentCheckerProps {
