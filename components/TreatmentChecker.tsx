@@ -61,10 +61,14 @@ export default function TreatmentChecker({ onComplete }: TreatmentCheckerProps) 
   const [assessmentData, setAssessmentData] = useState<AssessmentData>({
     treatmentType: '',
     lesionCount: 1,
-    urgency: ''
+    urgency: '',
+    name: '',
+    email: '',
+    phone: ''
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleTreatmentSelect = (value: string) => {
+  const handleTreatmentSelect = async (value: string) => {
     setAssessmentData({ ...assessmentData, treatmentType: value })
     setStep(2)
     
@@ -83,6 +87,24 @@ export default function TreatmentChecker({ onComplete }: TreatmentCheckerProps) 
       value: 25.00,
       currency: 'GBP'
     })
+    
+    // Send initial assessment data to GHL
+    try {
+      await fetch('/api/webhook', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          treatment_type: value,
+          assessment_started: true,
+          step: 1,
+          page_url: window.location.href
+        })
+      })
+    } catch (error) {
+      console.error('Failed to send webhook:', error)
+    }
   }
 
   const handleCountSelect = (count: number) => {
@@ -100,26 +122,67 @@ export default function TreatmentChecker({ onComplete }: TreatmentCheckerProps) 
   }
 
   const handleUrgencySelect = (value: string) => {
-    const finalData = { ...assessmentData, urgency: value }
-    setAssessmentData(finalData)
+    setAssessmentData({ ...assessmentData, urgency: value })
+    setStep(4) // Go to contact form
+    
+    // Track step 3 completion
+    trackFacebookEvent('AssessmentStep3', {
+      content_type: 'urgency_selection',
+      urgency: value,
+      step: 3,
+      value: 25.00,
+      currency: 'GBP'
+    })
+  }
+
+  const handleSubmitAssessment = async () => {
+    if (!assessmentData.name || (!assessmentData.email && !assessmentData.phone)) {
+      alert('Please provide your name and either email or phone number')
+      return
+    }
+
+    setIsSubmitting(true)
     
     // Custom event for completed assessment
     trackFacebookEvent('CompleteAssessment', {
       value: 25.00,
       currency: 'GBP',
       content_name: 'Full Assessment Completed',
-      treatment_type: finalData.treatmentType,
-      lesion_count: finalData.lesionCount,
-      urgency: value,
-      step: 3
+      treatment_type: assessmentData.treatmentType,
+      lesion_count: assessmentData.lesionCount,
+      urgency: assessmentData.urgency,
+      step: 4
     })
     
-    // Don't fire CompleteRegistration here - that's for actual booking
+    // Send complete assessment data to GHL webhook
+    try {
+      await fetch('/api/webhook', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: assessmentData.name,
+          email: assessmentData.email || '',
+          phone: assessmentData.phone || '',
+          treatment_type: assessmentData.treatmentType,
+          lesion_count: assessmentData.lesionCount,
+          urgency: assessmentData.urgency,
+          assessment_completed: true,
+          page_url: window.location.href,
+          user_agent: navigator.userAgent
+        })
+      })
+    } catch (error) {
+      console.error('Failed to send webhook:', error)
+    } finally {
+      setIsSubmitting(false)
+    }
     
-    onComplete(finalData)
+    onComplete(assessmentData)
   }
 
-  const progressPercentage = ((step - 1) / 3) * 100
+  const progressPercentage = ((step - 1) / 4) * 100
 
   return (
     <div className="bg-white rounded-2xl shadow-elegant border border-light-gray p-6 md:p-8">
@@ -128,7 +191,7 @@ export default function TreatmentChecker({ onComplete }: TreatmentCheckerProps) 
           <h2 className="text-2xl md:text-3xl font-light text-primary-black">
             Your Personal <span className="font-semibold">CryoPen Assessment</span>
           </h2>
-          <span className="text-sm text-silver">Step {step} of 3</span>
+          <span className="text-sm text-silver">Step {step} of 4</span>
         </div>
         <p className="text-charcoal">Let's find the perfect treatment plan for you</p>
         
@@ -234,6 +297,83 @@ export default function TreatmentChecker({ onComplete }: TreatmentCheckerProps) 
             </div>
             <button
               onClick={() => setStep(2)}
+              className="mt-4 text-primary-black hover:underline text-sm"
+            >
+              ← Back
+            </button>
+          </motion.div>
+        )}
+
+        {step === 4 && (
+          <motion.div
+            key="step4"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <h3 className="text-xl font-semibold mb-2">Almost done! Get your personalized quote</h3>
+            <p className="text-sm text-charcoal mb-6">We'll send you pricing and available appointment times</p>
+            
+            <div className="space-y-4">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-charcoal mb-1">
+                  Your Name *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  required
+                  value={assessmentData.name}
+                  onChange={(e) => setAssessmentData({ ...assessmentData, name: e.target.value })}
+                  className="w-full px-4 py-3 border-2 border-light-gray rounded-lg focus:border-primary-black focus:outline-none"
+                  placeholder="Enter your full name"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-charcoal mb-1">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  value={assessmentData.email}
+                  onChange={(e) => setAssessmentData({ ...assessmentData, email: e.target.value })}
+                  className="w-full px-4 py-3 border-2 border-light-gray rounded-lg focus:border-primary-black focus:outline-none"
+                  placeholder="your@email.com"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-charcoal mb-1">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  value={assessmentData.phone}
+                  onChange={(e) => setAssessmentData({ ...assessmentData, phone: e.target.value })}
+                  className="w-full px-4 py-3 border-2 border-light-gray rounded-lg focus:border-primary-black focus:outline-none"
+                  placeholder="07... (UK mobile)"
+                />
+              </div>
+              
+              <p className="text-xs text-silver">
+                * Required. Provide either email or phone number (or both)
+              </p>
+              
+              <button
+                onClick={handleSubmitAssessment}
+                disabled={isSubmitting}
+                className="w-full py-4 bg-gradient-to-r from-primary-black to-elegant-gray text-white font-semibold rounded-lg hover:shadow-lg transition-all disabled:opacity-50"
+              >
+                {isSubmitting ? 'Sending...' : 'Get My Personalized Quote →'}
+              </button>
+            </div>
+            
+            <button
+              onClick={() => setStep(3)}
               className="mt-4 text-primary-black hover:underline text-sm"
             >
               ← Back

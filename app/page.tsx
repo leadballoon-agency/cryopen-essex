@@ -27,6 +27,9 @@ interface AssessmentData {
   treatmentType: string
   lesionCount: number
   urgency: string
+  name?: string
+  email?: string
+  phone?: string
 }
 
 export default function Home() {

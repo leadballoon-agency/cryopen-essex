@@ -5,13 +5,42 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, Calendar, Clock, CheckCircle, Check, Phone, MessageSquare } from 'lucide-react'
 import { trackFacebookEvent } from '@/lib/analytics'
 
+interface AssessmentData {
+  treatmentType: string
+  lesionCount: number
+  urgency: string
+  name?: string
+  email?: string
+  phone?: string
+}
+
 interface CalendarModalProps {
   isOpen: boolean
   onClose: () => void
+  assessmentData?: AssessmentData
 }
 
-export default function CalendarModal({ isOpen, onClose }: CalendarModalProps) {
+export default function CalendarModal({ isOpen, onClose, assessmentData }: CalendarModalProps) {
   const modalRef = useRef<HTMLDivElement>(null)
+  
+  // Build the iframe URL with pre-filled parameters
+  const buildCalendarUrl = () => {
+    const baseUrl = 'https://link.hifuessex.co.uk/widget/booking/kLEVeJXuQZV6PA5oveyu'
+    const params = new URLSearchParams()
+    
+    if (assessmentData?.name) {
+      params.append('name', assessmentData.name)
+    }
+    if (assessmentData?.email) {
+      params.append('email', assessmentData.email)
+    }
+    if (assessmentData?.phone) {
+      params.append('phone', assessmentData.phone)
+    }
+    
+    const queryString = params.toString()
+    return queryString ? `${baseUrl}?${queryString}` : baseUrl
+  }
 
   useEffect(() => {
     if (isOpen) {
@@ -124,7 +153,7 @@ export default function CalendarModal({ isOpen, onClose }: CalendarModalProps) {
           {/* Calendar Embed */}
           <div className="p-6 bg-white">
             <iframe 
-              src="https://link.hifuessex.co.uk/widget/booking/kLEVeJXuQZV6PA5oveyu" 
+              src={buildCalendarUrl()}
               style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: '600px' }}
               scrolling="no" 
               id="beB6ZB0HopBh4ZDgUQA4_1756980180400"

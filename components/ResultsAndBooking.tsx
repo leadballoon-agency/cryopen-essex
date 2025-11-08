@@ -10,6 +10,9 @@ interface AssessmentData {
   treatmentType: string
   lesionCount: number
   urgency: string
+  name?: string
+  email?: string
+  phone?: string
 }
 
 interface ResultsAndBookingProps {
@@ -199,7 +202,11 @@ export default function ResultsAndBooking({ assessmentData }: ResultsAndBookingP
         </motion.div>
       </div>
       
-      <CalendarModal isOpen={isCalendarOpen} onClose={() => setIsCalendarOpen(false)} />
+      <CalendarModal 
+        isOpen={isCalendarOpen} 
+        onClose={() => setIsCalendarOpen(false)}
+        assessmentData={assessmentData}
+      />
     </>
   )
 }
