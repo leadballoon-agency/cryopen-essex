@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
 import PixelEvents from '@/components/PixelEvents'
+import SchemaMarkup from '@/components/SchemaMarkup'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,10 +27,10 @@ export const metadata: Metadata = {
     siteName: 'CryoPen Essex - Essex Way Clinic',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/images/devon at work.jpeg',
         width: 1200,
         height: 630,
-        alt: 'CryoPen Treatment at Essex Way Clinic',
+        alt: 'Devon performing professional CryoPen treatment at Essex Way Clinic',
       }
     ],
     locale: 'en_GB',
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'CryoPen Treatment Essex - Essex Way Clinic',
     description: 'Professional CryoPen treatment in Essex. Safe & effective removal of skin lesions.',
-    images: ['/og-image.jpg'],
+    images: ['/images/devon at work.jpeg'],
   },
   robots: {
     index: true,
@@ -115,6 +116,7 @@ export default function RootLayout({
           `}
         </Script>
         <PixelEvents />
+        <SchemaMarkup />
         {children}
       </body>
     </html>
