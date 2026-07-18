@@ -176,7 +176,7 @@ export default function CalendarModal({ isOpen, onClose, assessmentData }: Calen
             <div className="text-center">
               <p className="text-sm text-charcoal mb-2">
                 Prefer to call directly? Reach Kerry at{' '}
-                <a href="tel:07414452441" className="font-semibold text-primary-black hover:underline">
+                <a href="tel:07576585007" className="font-semibold text-primary-black hover:underline">
                   07414 452 441
                 </a>
               </p>

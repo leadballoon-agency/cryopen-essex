@@ -20,7 +20,7 @@ export default function SchemaMarkup() {
     },
     "image": logoUrl,
     "description": "Professional CryoPen treatment for skin tags, warts, and age spots removal in Essex. Advanced certified practitioner with 100+ successful treatments.",
-    "telephone": "+447414452441",
+    "telephone": "+447576585007",
     "email": "info@essexwayclinic.co.uk",
     "address": {
       "@type": "PostalAddress",
@@ -116,7 +116,7 @@ export default function SchemaMarkup() {
       "longitude": "0.2885"
     },
     "url": siteUrl,
-    "telephone": "+447414452441",
+    "telephone": "+447576585007",
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",

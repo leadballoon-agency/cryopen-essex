@@ -25,7 +25,7 @@ export default function Footer() {
           {/* Contact */}
           <div className="text-center">
             <a 
-              href="tel:07414452441" 
+              href="tel:07576585007" 
               onClick={() => trackPhoneClick('footer')}
               className="flex items-center justify-center gap-2 text-charcoal hover:text-primary-black transition-colors"
             >

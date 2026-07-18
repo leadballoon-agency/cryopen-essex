@@ -9,8 +9,8 @@ export const siteConfig = {
 
   // Contact Information
   contact: {
-    phone: '07414452441', // Kerry's mobile/WhatsApp for bookings
-    whatsapp: '447414452441', // Kerry's WhatsApp through GHL
+    phone: '07576585007', // Kerry's mobile/WhatsApp for bookings
+    whatsapp: '447576585007', // Kerry's WhatsApp through GHL
     email: 'info@essexwayclinic.com',
     bookingEmail: 'bookings@essexwayclinic.com',
   },
