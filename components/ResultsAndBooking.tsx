@@ -173,7 +173,7 @@ export default function ResultsAndBooking({ assessmentData }: ResultsAndBookingP
               </button>
               
               <a
-                href="tel:07576585007"
+                href="tel:+447506464362"
                 onClick={() => {
                   // Track as both Contact and special post-assessment call
                   trackPhoneClick('results_page_after_assessment')
@@ -188,7 +188,7 @@ export default function ResultsAndBooking({ assessmentData }: ResultsAndBookingP
                 className="px-8 py-4 border-2 border-primary-black text-primary-black font-bold rounded-full hover:bg-primary-black hover:text-white transition-all inline-flex items-center justify-center gap-2 whitespace-nowrap"
               >
                 <Phone className="w-5 h-5" />
-                07414 452 441
+                Chantell: 07506 464362
               </a>
             </div>
             

@@ -180,11 +180,11 @@ export default function PricingSection({ onCTAClick }: PricingSectionProps) {
                 Get My Quote
               </button>
               <a
-                href="tel:07576585007"
+                href="tel:+447506464362"
                 className="px-8 py-3 border-2 border-primary-black text-primary-black font-semibold rounded-full hover:bg-primary-black hover:text-white transition-all inline-flex items-center justify-center gap-2"
               >
                 <Phone className="w-5 h-5" />
-                Speak to Kerry
+                Speak to Chantell
               </a>
             </div>
           </motion.div>

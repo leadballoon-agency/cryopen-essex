@@ -92,12 +92,12 @@ export default function HeroSection({ onCTAClick }: HeroSectionProps) {
               </motion.button>
               
               <a
-                href="tel:07576585007"
+                href="tel:+447506464362"
                 onClick={() => trackPhoneClick('hero_section')}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-primary-black text-primary-black font-semibold rounded-full hover:bg-primary-black hover:text-white transition-all whitespace-nowrap"
               >
                 <Phone className="w-5 h-5" />
-                <span className="hidden sm:inline">Call:</span> 07414 452 441
+                <span className="hidden sm:inline">Chantell:</span> 07506 464362
               </a>
             </div>
             

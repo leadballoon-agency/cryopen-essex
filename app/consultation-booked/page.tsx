@@ -48,12 +48,12 @@ export default function ConsultationBooked() {
             </h1>
             
             <p className="text-xl text-gray-600 mb-8">
-              Kerry will call you within 24 hours to discuss your CryoPen treatment
+              Chantell will call you within 24 hours to discuss your CryoPen treatment
             </p>
             
             <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-8">
               <p className="text-amber-800 font-medium">
-                ⚡ Important: Please answer when Kerry calls from 07414 452 441
+                ⚡ Important: Please answer when Chantell calls from 07506 464362
               </p>
             </div>
             
@@ -192,14 +192,14 @@ export default function ConsultationBooked() {
             </h3>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:07576585007"
+                href="tel:+447506464362"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-medical-blue text-white font-bold rounded-full hover:bg-blue-700 transition-all"
               >
                 <Phone className="w-5 h-5" />
-                Call: 07414 452 441
+                Call Chantell: 07506 464362
               </a>
               <a
-                href="https://wa.me/447576585007"
+                href="https://wa.me/447506464362"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-green-500 text-white font-bold rounded-full hover:bg-green-600 transition-all"

@@ -187,7 +187,7 @@ export default function PrivacyPolicy() {
                 <div className="bg-off-white rounded-lg p-6">
                   <p className="font-semibold text-primary-black mb-2">The Essex Way Clinic</p>
                   <p className="text-charcoal">Email: info@essexwayclinic.com</p>
-                  <p className="text-charcoal">Phone: 07414 452 441</p>
+                  <p className="text-charcoal">Phone: Chantell 07506 464362 / Devon 07852 177576</p>
                   <p className="text-charcoal">Address: Essex, United Kingdom</p>
                 </div>
               </section>

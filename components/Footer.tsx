@@ -24,13 +24,21 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="text-center">
-            <a 
-              href="tel:07576585007" 
+            <a
+              href="tel:+447506464362"
               onClick={() => trackPhoneClick('footer')}
               className="flex items-center justify-center gap-2 text-charcoal hover:text-primary-black transition-colors"
             >
               <Phone className="w-4 h-4" />
-              <span>07414 452 441</span>
+              <span>Chantell: 07506 464362</span>
+            </a>
+            <a
+              href="tel:+447852177576"
+              onClick={() => trackPhoneClick('footer')}
+              className="flex items-center justify-center gap-2 text-charcoal hover:text-primary-black transition-colors mt-1"
+            >
+              <Phone className="w-4 h-4" />
+              <span>Devon: 07852 177576</span>
             </a>
           </div>
 

@@ -92,7 +92,7 @@ export default function FloatingCTA({ onCTAClick }: FloatingCTAProps) {
         </AnimatePresence>
         
         <a
-          href="https://wa.me/447576585007?text=Hi,%20I'm%20interested%20in%20CryoPen%20treatment"
+          href="https://wa.me/447506464362?text=Hi,%20I'm%20interested%20in%20CryoPen%20treatment"
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackWhatsAppClick('floating_button')}
@@ -103,7 +103,7 @@ export default function FloatingCTA({ onCTAClick }: FloatingCTAProps) {
         </a>
         
         <a
-          href="tel:07576585007"
+          href="tel:+447506464362"
           onClick={() => trackPhoneClick('floating_button')}
           className="w-14 h-14 bg-primary-black text-white rounded-full shadow-lg hover:bg-elegant-gray transition-colors flex items-center justify-center animate-pulse"
           aria-label="Call now"
@@ -125,7 +125,7 @@ export default function FloatingCTA({ onCTAClick }: FloatingCTAProps) {
             Start Assessment
           </button>
           <a
-            href="tel:07576585007"
+            href="tel:+447506464362"
             onClick={() => trackPhoneClick('mobile_sticky_bar')}
             className="px-4 py-3 bg-white border-2 border-primary-black text-primary-black rounded-full"
             aria-label="Call now"

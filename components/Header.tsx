@@ -102,11 +102,11 @@ export default function Header({ onCTAClick }: { onCTAClick?: () => void }) {
               </nav>
               <div className="flex flex-col gap-3">
                 <a
-                  href="tel:07576585007"
+                  href="tel:+447506464362"
                   className="flex items-center justify-center gap-2 py-3 border border-primary-black text-primary-black rounded-full font-medium"
                 >
                   <Phone className="w-4 h-4" />
-                  <span>07414 452 441</span>
+                  <span>Chantell: 07506 464362</span>
                 </a>
                 <button
                   onClick={() => {
