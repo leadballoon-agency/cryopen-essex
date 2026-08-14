@@ -77,9 +77,24 @@ export const siteConfig = {
   },
 
   // GHL Calendar - PLEASE UPDATE WITH REAL DETAILS
+  // NOTE: The live GHL/Zoom booking widget URL actually used by CalendarModal is
+  // 'https://link.hifuessex.co.uk/widget/booking/kLEVeJXuQZV6PA5oveyu'. These fields
+  // are placeholders retained for reference; the calendar flow is only active when
+  // booking.mode === 'calendar' (see below).
   ghl: {
     calendarUrl: 'https://your-ghl-domain.com/calendar-embed.js', // UPDATE
     calendarId: 'kerry-cryopen-consultations', // UPDATE if different
+  },
+
+  // Booking mode
+  // 'fresha'   = primary Book CTAs open the Fresha booking page in a NEW TAB, with a
+  //              phone-call fallback (Kerry's Zoom/GHL consultations are paused).
+  // 'calendar' = original behaviour: the GHL/Zoom consultation calendar embed in
+  //              CalendarModal. Flip this ONE value back to 'calendar' to restore the
+  //              Kerry/Zoom flow when she returns in September.
+  booking: {
+    mode: 'fresha' as 'fresha' | 'calendar',
+    freshaUrl: 'https://www.fresha.com/en-GB/a/the-essex-way-clinic-south-ockendon-aveley-house-arcany-road-m7yrje2r',
   },
 
   // Pricing

@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Calendar, Clock, CheckCircle, Check, Phone, MessageSquare } from 'lucide-react'
+import { X, Calendar, Clock, CheckCircle, Check, Phone, MessageSquare, ExternalLink } from 'lucide-react'
 import { trackFacebookEvent } from '@/lib/analytics'
+import { siteConfig } from '@/lib/config'
 
 interface AssessmentData {
   treatmentType: string
@@ -22,7 +23,11 @@ interface CalendarModalProps {
 
 export default function CalendarModal({ isOpen, onClose, assessmentData }: CalendarModalProps) {
   const modalRef = useRef<HTMLDivElement>(null)
-  
+  // 'fresha' = Kerry's Zoom/GHL calendar is paused; show a Fresha booking button + call
+  // fallback instead of the (now inactive) calendar embed. Flip siteConfig.booking.mode
+  // back to 'calendar' to restore the original flow. See lib/config.ts.
+  const isFreshaMode = siteConfig.booking.mode === 'fresha'
+
   // Build the iframe URL with pre-filled parameters
   const buildCalendarUrl = () => {
     const baseUrl = 'https://link.hifuessex.co.uk/widget/booking/kLEVeJXuQZV6PA5oveyu'
@@ -45,16 +50,20 @@ export default function CalendarModal({ isOpen, onClose, assessmentData }: Calen
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
-      
-      // Load GHL form embed script when modal opens
-      const script = document.createElement('script')
-      script.src = 'https://link.hifuessex.co.uk/js/form_embed.js'
-      script.type = 'text/javascript'
-      script.async = true
-      
-      // Add the script if not already present
-      if (!document.querySelector('script[src="https://link.hifuessex.co.uk/js/form_embed.js"]')) {
-        document.body.appendChild(script)
+
+      // Only load the GHL calendar embed script in 'calendar' mode. In 'fresha' mode the
+      // calendar is not rendered, so the script is unnecessary.
+      if (!isFreshaMode) {
+        // Load GHL form embed script when modal opens
+        const script = document.createElement('script')
+        script.src = 'https://link.hifuessex.co.uk/js/form_embed.js'
+        script.type = 'text/javascript'
+        script.async = true
+
+        // Add the script if not already present
+        if (!document.querySelector('script[src="https://link.hifuessex.co.uk/js/form_embed.js"]')) {
+          document.body.appendChild(script)
+        }
       }
     } else {
       document.body.style.overflow = 'unset'
@@ -63,7 +72,7 @@ export default function CalendarModal({ isOpen, onClose, assessmentData }: Calen
     return () => {
       document.body.style.overflow = 'unset'
     }
-  }, [isOpen])
+  }, [isOpen, isFreshaMode])
 
   // Close on escape key
   useEffect(() => {
@@ -113,7 +122,9 @@ export default function CalendarModal({ isOpen, onClose, assessmentData }: Calen
                   Consultation with <span className="font-semibold">Devon</span>
                 </h2>
                 <p className="text-sm text-gray-300">
-                  Book your complimentary CryoPen assessment
+                  {isFreshaMode
+                    ? 'Book your CryoPen appointment online'
+                    : 'Book your complimentary CryoPen assessment'}
                 </p>
               </div>
               <button
@@ -150,16 +161,45 @@ export default function CalendarModal({ isOpen, onClose, assessmentData }: Calen
             </div>
           </div>
 
-          {/* Calendar Embed */}
-          <div className="p-6 bg-white">
-            <iframe 
-              src={buildCalendarUrl()}
-              style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: '600px' }}
-              scrolling="no" 
-              id="beB6ZB0HopBh4ZDgUQA4_1756980180400"
-              title="Book Your Consultation"
-            />
-          </div>
+          {/* Booking action: Fresha button (fresha mode) or GHL calendar embed (calendar mode) */}
+          {isFreshaMode ? (
+            <div className="px-6 py-8 bg-white">
+              <div className="max-w-md mx-auto text-center">
+                <p className="text-charcoal mb-6">
+                  Choose a date and time that suits you on our online booking page.
+                </p>
+                <a
+                  href={siteConfig.booking.freshaUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() =>
+                    trackFacebookEvent('InitiateCheckout', {
+                      content_type: 'fresha_booking',
+                      content_name: 'CryoPen Consultation',
+                      currency: 'GBP',
+                      value: 25.0,
+                    })
+                  }
+                  className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-black text-white font-bold rounded-full hover:bg-elegant-gray hover:shadow-xl transition-all"
+                >
+                  <Calendar className="w-5 h-5" />
+                  Book on Fresha
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+                <p className="text-xs text-silver mt-3">Opens in a new tab</p>
+              </div>
+            </div>
+          ) : (
+            <div className="p-6 bg-white">
+              <iframe
+                src={buildCalendarUrl()}
+                style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: '600px' }}
+                scrolling="no"
+                id="beB6ZB0HopBh4ZDgUQA4_1756980180400"
+                title="Book Your Consultation"
+              />
+            </div>
+          )}
 
           {/* Booking Fee Notice */}
           <div className="px-6 pb-4">
